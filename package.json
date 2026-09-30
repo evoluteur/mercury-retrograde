@@ -1,0 +1,24 @@
+{
+  "name": "mercury-retrograde",
+  "version": "1.0.0",
+  "description": "Is Mercury retrograde today? The answer for any date, the next retrograde and its shadow periods, the loop Mercury draws in the sky, and the year's retrogrades for every planet.",
+  "repository": "github:evoluteur/mercury-retrograde",
+  "homepage": "https://evoluteur.github.io/mercury-retrograde/",
+  "copyright": "(c) 2026 Olivier Giulieri",
+  "author": "Olivier Giulieri (https://evoluteur.github.io/)",
+  "license": "MIT",
+  "keywords": [
+    "mercury-retrograde",
+    "retrograde",
+    "mercury",
+    "astrology",
+    "astronomy",
+    "planets",
+    "ephemeris",
+    "zodiac",
+    "shadow-period",
+    "esoteric",
+    "esoterica",
+    "mystic"
+  ]
+}

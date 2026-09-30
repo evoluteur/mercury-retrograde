@@ -1,0 +1,680 @@
+#omg-header {
+  z-index: 450;
+}
+
+/* core.css is shared across other projects, so the theme-picker's swatch
+   styling stays untouched there -- this overrides it to render icons
+   (sun/moon/spiral, same set as react-morph-charts' ThemeToggle) instead of
+   plain colored circles, without needing to edit the shared file. */
+#omg-theme-picker {
+  gap: 2px;
+}
+#omg-theme-picker > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: none;
+  color: currentColor;
+  opacity: 0.75;
+}
+#omg-theme-picker > a:hover {
+  opacity: 1;
+}
+#omg-theme-picker > a.selected {
+  opacity: 1;
+}
+
+/* GitHub link, just below the theme toggle */
+#omg-github {
+  position: absolute;
+  top: 34px;
+  right: 4px; /* centred under the last toggle icon */
+  margin-top: 12px;
+  z-index: 200;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: none;
+  opacity: 0.75;
+}
+#omg-github svg {
+  width: 30px; /* same size in every theme (the themes' generic svg rule differs) */
+  height: 30px;
+}
+html[data-theme="evol-blue"] #omg-github svg {
+  fill: white; /* like the theme toggle icons on the blue background */
+}
+#omg-github:hover,
+#omg-github:focus-visible {
+  opacity: 1;
+}
+
+/* title and page links on one line, 40px apart (the theme toggle and
+   GitHub icon are positioned on their own at the top right) */
+#omg-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 40px;
+  padding-right: 110px; /* clear of the theme toggle */
+  box-sizing: border-box;
+  /* a flex box keeps the h1's top margin inside it, which would move the
+     theme toggle and GitHub icon up: put that margin on the header instead */
+  margin-top: 24px;
+}
+#omg-header h1 {
+  min-width: 0;
+  margin-top: 0;
+}
+#mr-nav {
+  display: flex;
+  gap: 24px;
+  font-size: 1.05em;
+}
+#mr-nav a {
+  white-space: nowrap;
+}
+#mr-nav a.active {
+  color: inherit;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------- colors */
+
+:root {
+  --mr-accent: #ffb74d; /* retrograde */
+  --mr-shadow: rgba(255, 183, 77, 0.5);
+  --mr-direct: rgba(255, 255, 255, 0.45);
+  --mr-line: rgba(255, 255, 255, 0.16);
+  --mr-muted: rgba(255, 255, 255, 0.7);
+  --mr-yes: #ff8a65;
+  --mr-no: #81c784;
+  --mr-today: #64b5f6;
+  --mr-shadow-bg: rgba(255, 183, 77, 0.07);
+  --mr-retro-bg: rgba(255, 183, 77, 0.16);
+}
+html[data-theme="light"] {
+  --mr-accent: #d9822b;
+  --mr-shadow: rgba(217, 130, 43, 0.4);
+  --mr-direct: rgba(26, 33, 45, 0.45);
+  --mr-line: rgba(26, 33, 45, 0.15);
+  --mr-muted: rgba(26, 33, 45, 0.7);
+  --mr-yes: #d84315;
+  --mr-no: #2e7d32;
+  --mr-today: #1565c0;
+  --mr-shadow-bg: rgba(217, 130, 43, 0.07);
+  --mr-retro-bg: rgba(217, 130, 43, 0.16);
+}
+html[data-theme="evol-blue"] {
+  --mr-accent: #ffcc80;
+  --mr-shadow: rgba(255, 204, 128, 0.4);
+  --mr-direct: rgba(255, 255, 255, 0.6);
+  --mr-line: rgba(255, 255, 255, 0.25);
+  --mr-muted: rgba(255, 255, 255, 0.85);
+  --mr-yes: #ffab91;
+  --mr-no: #b9f6ca;
+  --mr-today: white;
+  --mr-shadow-bg: rgba(255, 255, 255, 0.08);
+  --mr-retro-bg: rgba(255, 204, 128, 0.25);
+}
+
+/* ---------------------------------------------------------------- answer */
+
+.content {
+  max-width: 760px;
+}
+.answer-box {
+  margin: 0 0 30px;
+}
+.answer {
+  font-size: 5em;
+  font-weight: bold;
+  line-height: 1;
+  margin: 6px 0 14px;
+}
+.answer.yes {
+  color: var(--mr-yes);
+}
+.answer.no {
+  color: var(--mr-no);
+}
+.status,
+.next {
+  font-size: 1.1em;
+  line-height: 1.5;
+  margin: 0 0 8px;
+  max-width: 640px;
+}
+.date-pick {
+  margin: 18px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+.date-pick input {
+  font: inherit;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: var(--input-text);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color-scheme: dark;
+}
+html[data-theme="light"] .date-pick input {
+  color-scheme: light;
+}
+
+/* ---------------------------------------------------------------- charts */
+
+h3 {
+  margin-top: 34px;
+}
+.caption {
+  opacity: 0.85;
+  max-width: 640px;
+  margin: 0 0 10px;
+}
+.chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  fill: currentColor; /* the themes' generic icon rule is meant for small svgs */
+}
+.chart svg:hover {
+  fill: currentColor;
+}
+.chart svg text {
+  font-size: 12px;
+  fill: currentColor;
+}
+
+/* the loop */
+.sign-line {
+  stroke: var(--mr-line);
+  stroke-dasharray: 3 4;
+}
+.chart svg .sign-label {
+  font-size: 13px;
+  fill: var(--mr-muted);
+}
+.loop-chart polyline {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.path-direct {
+  stroke: var(--mr-direct);
+  stroke-width: 2;
+}
+.path-shadow {
+  stroke: var(--mr-shadow);
+  stroke-width: 4;
+}
+.path-retro {
+  stroke: var(--mr-accent);
+  stroke-width: 4;
+}
+.legend line {
+  stroke-linecap: round;
+}
+.day-dot {
+  fill: currentColor;
+  opacity: 0.55;
+}
+.station {
+  fill: var(--mr-accent);
+}
+.chart svg .station-label {
+  font-size: 12px;
+  fill: var(--mr-accent);
+}
+.today-dot {
+  fill: none;
+  stroke: var(--mr-today);
+  stroke-width: 2.5;
+}
+.marker {
+  fill: var(--mr-accent);
+  opacity: 0.9;
+}
+.chart svg .marker-glyph {
+  font-size: 11px;
+  fill: #1a212d;
+}
+
+/* the orrery */
+.orrery-wrap {
+  max-width: 420px;
+}
+.zodiac-ring {
+  fill: none;
+  stroke: var(--mr-line);
+  stroke-width: 1;
+}
+.zodiac-tick {
+  stroke: var(--mr-line);
+}
+.chart svg .zodiac-glyph {
+  font-size: 13px;
+  fill: var(--mr-muted);
+}
+.orbit {
+  fill: none;
+  stroke: var(--mr-line);
+  stroke-width: 1.2;
+}
+.sun {
+  fill: #ffd54f;
+}
+.earth {
+  fill: #64b5f6;
+}
+.mercury {
+  fill: #b0bec5;
+}
+.mercury.retro {
+  fill: var(--mr-accent);
+}
+.sight {
+  stroke: var(--mr-direct);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 3;
+}
+.sight.retro,
+.sight-hit.retro {
+  stroke: var(--mr-accent);
+}
+.sight-hit {
+  fill: none;
+  stroke: var(--mr-direct);
+  stroke-width: 2;
+}
+.chart svg .body-label {
+  font-size: 11px;
+  fill: var(--mr-muted);
+}
+.orrery-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 8px 0 0;
+}
+.orrery-controls input[type="range"] {
+  flex: 1 1 160px;
+  accent-color: var(--mr-accent);
+}
+.play-btn {
+  min-width: 72px;
+}
+.slider-date {
+  flex-basis: 100%;
+  font-size: 0.95em;
+  opacity: 0.9;
+}
+.tag-retro {
+  color: var(--mr-accent);
+  font-weight: bold;
+}
+.tag-direct {
+  opacity: 0.8;
+}
+
+/* ---------------------------------------------------------------- the year */
+
+.year-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 8px;
+}
+.year-label {
+  font-size: 1.2em;
+  min-width: 3em;
+  text-align: center;
+}
+.year-btn {
+  min-width: 40px;
+  margin: 0; /* the theme's button margin (20px on top) knocks it off the row */
+}
+.year-btn:disabled {
+  opacity: 0.4;
+}
+.month-line {
+  stroke: var(--mr-line);
+}
+.chart svg .month-label {
+  font-size: 11px;
+  fill: var(--mr-muted);
+}
+.chart svg .planet-label {
+  font-size: 12px;
+}
+.strip-base {
+  stroke: var(--mr-line);
+}
+.strip-shadow {
+  fill: var(--mr-shadow);
+}
+.strip-retro {
+  fill: var(--mr-accent);
+}
+.now-line {
+  stroke: var(--mr-today);
+  stroke-width: 2;
+}
+.year-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0 6px;
+}
+.year-table th,
+.year-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 7px 10px 7px 0;
+  border-bottom: 1px solid var(--mr-line);
+}
+.year-table th {
+  font-weight: normal;
+  opacity: 0.75;
+  font-size: 0.9em;
+}
+.year-table .planet {
+  white-space: nowrap;
+}
+.year-table .deg {
+  font-size: 0.85em;
+  opacity: 0.75;
+}
+.year-table tr.now td:not(.planet) {
+  color: var(--mr-accent);
+}
+.year-table tr.none td {
+  opacity: 0.6;
+}
+.note {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+.explain p {
+  max-width: 680px;
+  line-height: 1.55;
+}
+.footer {
+  margin-top: 40px;
+}
+
+@media only screen and (max-width: 560px) {
+  .answer {
+    font-size: 4em;
+  }
+  .col-shadow {
+    display: none;
+  }
+  .year-table th,
+  .year-table td {
+    padding-right: 6px;
+  }
+}
+
+/* keep the title clear of the theme toggle and GitHub icon */
+@media only screen and (max-width: 560px) {
+  #omg-header {
+    padding-right: 96px;
+    margin-top: 15px;
+  }
+  #omg-header h1 {
+    font-size: min(2em, 5.8vw); /* "Mercury Retrograde" on one line */
+    margin-bottom: 4px;
+  }
+  #mr-nav {
+    flex-basis: 100%;
+    font-size: 0.95em;
+    margin-bottom: 8px;
+  }
+  #question {
+    padding-right: 40px; /* clear of the GitHub icon */
+  }
+}
+
+/* ---------------------------------------------------------------- calendar */
+
+.cal-link {
+  margin-left: 4px;
+}
+#omg-header h1 a,
+#omg-header h1 a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.cal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0 0 12px;
+}
+.month-name {
+  font-size: 1.3em;
+  min-width: 9.5em;
+  text-align: center;
+}
+.cal-option {
+  margin-left: auto;
+  font-size: 0.95em;
+  white-space: nowrap;
+}
+.cal-summary {
+  margin: 0 0 14px;
+  line-height: 1.5;
+  min-height: 3em; /* two lines, so the grid doesn't jump from month to month */
+}
+.cal-row,
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+.cal-wd {
+  text-align: center;
+  font-size: 0.85em;
+  opacity: 0.7;
+  padding: 4px 0;
+}
+.wd-short {
+  display: none;
+}
+.cal-day {
+  position: relative;
+  display: block;
+  min-height: 78px;
+  padding: 5px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--mr-line);
+  color: inherit;
+  box-sizing: border-box;
+}
+a.cal-day,
+a.cal-day:visited {
+  color: inherit;
+}
+a.cal-day:hover {
+  text-decoration: none;
+  border-color: var(--mr-accent);
+}
+.cal-day.empty {
+  border-color: transparent;
+}
+.cal-day.pre,
+.cal-day.post {
+  background-color: var(--mr-shadow-bg);
+}
+.cal-day.retro,
+.cal-day.sr,
+.cal-day.sd {
+  background-color: var(--mr-retro-bg);
+  border-color: var(--mr-shadow);
+}
+.cal-day.today {
+  border: 2px solid var(--mr-today);
+  padding: 4px 5px;
+}
+.cal-num {
+  font-size: 0.95em;
+}
+.cal-day.today .cal-num {
+  font-weight: bold;
+}
+.cal-icon {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  color: var(--mr-accent);
+  font-weight: bold;
+}
+.cal-icon.retro {
+  font-size: 1.35em;
+  line-height: 1;
+}
+.cal-icon.station {
+  font-size: 0.8em;
+  border: 1.5px solid var(--mr-accent);
+  border-radius: 4px;
+  padding: 0 3px;
+}
+.cal-sign {
+  position: absolute;
+  left: 6px;
+  bottom: 4px;
+  font-size: 0.95em;
+  opacity: 0.55;
+}
+.cal-sign.ingress {
+  opacity: 1;
+  font-weight: bold;
+}
+.cal-others {
+  position: absolute;
+  right: 6px;
+  bottom: 4px;
+  font-size: 0.85em;
+  letter-spacing: 1px;
+  opacity: 0.75;
+}
+.cal-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin: 14px 0 4px;
+  font-size: 0.9em;
+}
+.cal-key {
+  display: inline-block;
+  min-width: 18px;
+  text-align: center;
+  color: var(--mr-accent);
+  font-weight: bold;
+}
+.cal-key.station {
+  font-size: 0.85em;
+  border: 1.5px solid var(--mr-accent);
+  border-radius: 4px;
+  padding: 0 3px;
+}
+.cal-key.shadow {
+  width: 18px;
+  height: 14px;
+  border-radius: 3px;
+  vertical-align: middle;
+  background-color: var(--mr-shadow-bg);
+  border: 1px solid var(--mr-line);
+}
+.cal-key.sign,
+.cal-key.other {
+  color: inherit;
+  font-weight: normal;
+  opacity: 0.8;
+}
+
+@media only screen and (max-width: 560px) {
+  .cal-row,
+  .cal-grid {
+    gap: 2px;
+  }
+  .wd-long {
+    display: none;
+  }
+  .wd-short {
+    display: inline;
+  }
+  .cal-day {
+    min-height: 58px;
+    padding: 3px 4px;
+    border-radius: 4px;
+  }
+  .cal-day.today {
+    padding: 2px 3px;
+  }
+  .cal-num {
+    font-size: 0.85em;
+  }
+  .cal-icon {
+    top: 2px;
+    right: 3px;
+  }
+  .cal-icon.retro {
+    font-size: 1.1em;
+  }
+  .cal-icon.station {
+    position: static;
+    display: block;
+    width: fit-content;
+    font-size: 0.65em;
+    padding: 0 2px;
+    margin-top: 1px;
+  }
+  .cal-sign {
+    left: 4px;
+    bottom: 2px;
+    font-size: 0.8em;
+  }
+  .cal-others {
+    right: 3px;
+    bottom: 2px;
+    font-size: 0.65em;
+    letter-spacing: 0;
+    max-width: 60%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .month-name {
+    min-width: 0;
+    flex: 1;
+  }
+  .cal-option {
+    margin-left: 0;
+  }
+  .cal-summary {
+    min-height: 4.5em;
+  }
+}
+@media only screen and (max-width: 560px) {
+  /* no room for the other planets in a phone-sized day: Mercury only */
+  .cal-others,
+  .cal-option,
+  .legend-planets {
+    display: none !important;
+  }
+}

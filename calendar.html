@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-063933E3C2"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-063933E3C2");
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mercury Retrograde Calendar: Month by Month</title>
+    <meta
+      name="description"
+      content="Mercury retrograde calendar: see each month day by day, with Mercury's retrograde, stations and shadow periods, the sign it is in, and which other planets are retrograde."
+    />
+    <meta name="author" content="Olivier Giulieri" />
+    <link
+      rel="canonical"
+      href="https://evoluteur.github.io/mercury-retrograde/calendar.html"
+    />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta name="theme-color" content="#1a212d" />
+    <meta property="og:site_name" content="Mercury Retrograde" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mercury Retrograde Calendar" />
+    <meta
+      property="og:description"
+      content="Each month day by day: Mercury's retrograde, stations and shadow, and the other planets' retrogrades."
+    />
+    <meta
+      property="og:url"
+      content="https://evoluteur.github.io/mercury-retrograde/calendar.html"
+    />
+    <meta
+      property="og:image"
+      content="https://evoluteur.github.io/mercury-retrograde/img/mercury-retrograde.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Overpass"
+    />
+    <link id="omg-core-css" rel="stylesheet" href="css/core.css" />
+    <script>
+      // Themes (dark, light, evol-blue) are copies of omg-themes; set OMG_THEMES_BASE to link the hosted ones instead.
+      window.OMG_THEMES_BASE = ""; // or "https://evoluteur.github.io/omg-themes/" to link the hosted themes
+      window.OMG_DEFAULT_THEME = "dark";
+      (function () {
+        var t = window.OMG_DEFAULT_THEME;
+        try {
+          t = localStorage.getItem("omg-theme") || t;
+        } catch (e) {}
+        if (t !== "dark" && t !== "light" && t !== "evol-blue")
+          t = window.OMG_DEFAULT_THEME;
+        document.documentElement.setAttribute("data-theme", t);
+        // written here (not in the markup) so the saved theme loads before first paint
+        document.write(
+          '<link id="omg-theme-css" rel="stylesheet" href="' +
+            window.OMG_THEMES_BASE +
+            "css/themes/" +
+            t +
+            "/" +
+            t +
+            '.css" />',
+        );
+      })();
+    </script>
+    <link id="omg-density-css" rel="stylesheet" href="css/densities.css" />
+    <link rel="stylesheet" href="css/mercury.css" />
+
+    <script src="js/omg.js"></script>
+    <script src="js/astro.js"></script>
+    <script src="js/calendar.js"></script>
+  </head>
+
+  <body
+    onload="
+      setupPage('home');
+      initCalendar();
+    "
+    id="omg-body"
+  >
+    <div id="omg-header">
+      <h1><a href="index.html">Mercury Retrograde</a></h1>
+      <nav id="mr-nav" aria-label="Pages">
+        <a href="index.html">Is it retrograde today?</a>
+        <a href="calendar.html" class="active" aria-current="page">Calendar</a>
+      </nav>
+      <div id="omg-theme-picker"></div>
+      <a
+        id="omg-github"
+        href="https://github.com/evoluteur/mercury-retrograde"
+        target="_blank"
+        rel="noopener"
+        title="Mercury Retrograde on GitHub"
+        aria-label="Mercury Retrograde on GitHub"
+        ><svg viewBox="0 0 16 16" aria-hidden="true">
+          <path
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+          /></svg
+      ></a>
+    </div>
+    <h2 id="cal-title">Mercury retrograde calendar</h2>
+    <div class="content cal-page">
+      <div class="cal-nav">
+        <button
+          type="button"
+          id="month-prev"
+          class="year-btn"
+          aria-label="Previous month"
+        >
+          ←
+        </button>
+        <span id="month-label" class="month-name"></span>
+        <button
+          type="button"
+          id="month-next"
+          class="year-btn"
+          aria-label="Next month"
+        >
+          →
+        </button>
+        <a id="this-month" href="#" class="today-link">This month</a>
+        <label class="cal-option"
+          ><input type="checkbox" id="show-planets" checked /> Other
+          planets</label
+        >
+      </div>
+      <p id="cal-summary" class="cal-summary"></p>
+      <div id="calendar" class="calendar" role="grid"></div>
+      <div class="cal-legend">
+        <span><span class="cal-key retro">℞</span> Mercury retrograde</span>
+        <span
+          ><span class="cal-key station">SR</span>
+          <span class="cal-key station">SD</span> stations retrograde /
+          direct</span
+        >
+        <span><span class="cal-key shadow"></span> shadow</span>
+        <span
+          ><span class="cal-key sign">♏&#xFE0E;</span> Mercury's sign (bold on
+          the day it changes)</span
+        >
+        <span class="legend-planets"
+          ><span class="cal-key other">♄&#xFE0E;</span> other planets
+          retrograde</span
+        >
+      </div>
+      <p class="note">
+        Click a day to see where Mercury is and why. Days are in your time zone;
+        a station is shown on the day it happens.
+      </p>
+
+      <div class="footer">
+        <p>
+          <a href="index.html">Is Mercury retrograde today?</a> ·
+          <a href="calendar.html">Retrograde calendar</a>
+        </p>
+        <p>
+          Mercury Retrograde is open source on
+          <a href="https://github.com/evoluteur/mercury-retrograde">GitHub</a>
+          with an MIT license.
+        </p>
+        <p>
+          Had fun browsing the app?
+          <a href="https://github.com/sponsors/evoluteur"
+            >Buy me a coffee by becoming a sponsor</a
+          >.
+        </p>
+        <p>
+          You may also enjoy the
+          <a href="https://evoluteur.github.io/moon-phase-calendar/"
+            >Moon Phase Calendar</a
+          >
+          and the
+          <a href="https://evoluteur.github.io/music-of-the-spheres/"
+            >Music of the Spheres</a
+          >. For more mystic arts as small web apps, see
+          <a href="https://evoluteur.github.io/esoterica.html">Esoterica</a>.
+        </p>
+        <p class="copyright">
+          &#169; 2026
+          <a href="https://evoluteur.github.io/">Olivier Giulieri</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

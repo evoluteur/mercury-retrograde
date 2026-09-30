@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-063933E3C2"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-063933E3C2");
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Is Mercury Retrograde? Today's Answer and Upcoming Dates</title>
+    <meta
+      name="description"
+      content="Is Mercury retrograde today? The answer for any date, the next retrograde and its shadow periods, the loop Mercury draws in the sky, and this year's retrogrades for every planet."
+    />
+    <meta name="author" content="Olivier Giulieri" />
+    <link
+      rel="canonical"
+      href="https://evoluteur.github.io/mercury-retrograde/"
+    />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta name="theme-color" content="#1a212d" />
+    <meta property="og:site_name" content="Mercury Retrograde" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Is Mercury Retrograde?" />
+    <meta
+      property="og:description"
+      content="The answer for today or any date, the next retrograde and its shadow, and why Mercury seems to go backward."
+    />
+    <meta
+      property="og:url"
+      content="https://evoluteur.github.io/mercury-retrograde/"
+    />
+    <meta
+      property="og:image"
+      content="https://evoluteur.github.io/mercury-retrograde/img/mercury-retrograde.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Overpass"
+    />
+    <link id="omg-core-css" rel="stylesheet" href="css/core.css" />
+    <script>
+      // Themes (dark, light, evol-blue) are copies of omg-themes; set OMG_THEMES_BASE to link the hosted ones instead.
+      window.OMG_THEMES_BASE = ""; // or "https://evoluteur.github.io/omg-themes/" to link the hosted themes
+      window.OMG_DEFAULT_THEME = "dark";
+      (function () {
+        var t = window.OMG_DEFAULT_THEME;
+        try {
+          t = localStorage.getItem("omg-theme") || t;
+        } catch (e) {}
+        if (t !== "dark" && t !== "light" && t !== "evol-blue")
+          t = window.OMG_DEFAULT_THEME;
+        document.documentElement.setAttribute("data-theme", t);
+        // written here (not in the markup) so the saved theme loads before first paint
+        document.write(
+          '<link id="omg-theme-css" rel="stylesheet" href="' +
+            window.OMG_THEMES_BASE +
+            "css/themes/" +
+            t +
+            "/" +
+            t +
+            '.css" />',
+        );
+      })();
+    </script>
+    <link id="omg-density-css" rel="stylesheet" href="css/densities.css" />
+    <link rel="stylesheet" href="css/mercury.css" />
+
+    <script src="js/omg.js"></script>
+    <script src="js/astro.js"></script>
+    <script src="js/mercury.js"></script>
+  </head>
+
+  <body
+    onload="
+      setupPage('home');
+      initMercury();
+    "
+    id="omg-body"
+  >
+    <div id="omg-header">
+      <h1>Mercury Retrograde</h1>
+      <nav id="mr-nav" aria-label="Pages">
+        <a href="index.html" class="active" aria-current="page"
+          >Is it retrograde today?</a
+        >
+        <a href="calendar.html">Calendar</a>
+      </nav>
+      <div id="omg-theme-picker"></div>
+      <a
+        id="omg-github"
+        href="https://github.com/evoluteur/mercury-retrograde"
+        target="_blank"
+        rel="noopener"
+        title="Mercury Retrograde on GitHub"
+        aria-label="Mercury Retrograde on GitHub"
+        ><svg viewBox="0 0 16 16" aria-hidden="true">
+          <path
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+          /></svg
+      ></a>
+    </div>
+    <h2 id="question">Is Mercury retrograde today?</h2>
+    <div class="content">
+      <section class="answer-box" aria-live="polite">
+        <div id="answer" class="answer"></div>
+        <p id="status" class="status"></p>
+        <p id="next" class="next"></p>
+        <p class="date-pick">
+          <label for="date-input">Check another date:</label>
+          <input
+            id="date-input"
+            type="date"
+            min="1800-01-01"
+            max="2050-12-31"
+          />
+          <a id="today-link" href="#" class="today-link">Today</a>
+          <a href="calendar.html" class="cal-link">See the calendar</a>
+        </p>
+      </section>
+
+      <h3 id="loop-title">The loop in the sky</h3>
+      <p id="loop-caption" class="caption"></p>
+      <div id="loop-chart" class="chart loop-chart"></div>
+
+      <h3>Why it seems to go backward</h3>
+      <p class="caption">
+        Mercury never actually reverses. Seen from above, both planets keep
+        circling the Sun; it is the line of sight from the Earth that swings
+        back when the faster Mercury overtakes us on the inside track.
+      </p>
+      <div class="orrery-wrap">
+        <div id="orrery" class="chart orrery"></div>
+        <div class="orrery-controls">
+          <button type="button" id="play-btn" class="play-btn">Play</button>
+          <input
+            id="time-slider"
+            type="range"
+            min="0"
+            max="1000"
+            value="0"
+            aria-label="Date"
+          />
+          <span id="slider-date" class="slider-date"></span>
+        </div>
+      </div>
+
+      <h3 id="year-title">Retrogrades of the year</h3>
+      <div class="year-nav">
+        <button
+          type="button"
+          id="year-prev"
+          class="year-btn"
+          aria-label="Previous year"
+        >
+          ←
+        </button>
+        <span id="year-label" class="year-label"></span>
+        <button
+          type="button"
+          id="year-next"
+          class="year-btn"
+          aria-label="Next year"
+        >
+          →
+        </button>
+      </div>
+      <div id="year-strip" class="chart year-strip"></div>
+      <div id="year-table" class="year-table"></div>
+
+      <h3>What a retrograde is</h3>
+      <div class="explain">
+        <p>
+          Planets drift eastward through the zodiac, night after night. A few
+          times a year Mercury seems to slow down, stand still, and slide back
+          west for about three weeks before it turns forward again. That
+          backward stretch is the <strong>retrograde</strong>; the moments it
+          stands still are its <strong>stations</strong>.
+        </p>
+        <p>
+          It is an effect of perspective. Mercury goes around the Sun in 88
+          days, the Earth in 365, so about every 116 days Mercury catches up
+          with us on the inside and passes between the Earth and the Sun. Around
+          that pass, it moves across our line of sight in the opposite
+          direction, like a car you overtake seems to slide backward against the
+          hills. Venus does the same when it passes us, and the outer planets
+          (Mars to Pluto) when the Earth overtakes them.
+        </p>
+        <p>
+          The <strong>shadow</strong> is the stretch of sky the planet crosses
+          three times: forward before the retrograde (pre-shadow), backward
+          during it, and forward again after it (post-shadow). Astrologers often
+          count the shadow as part of the retrograde's influence.
+        </p>
+        <p>
+          In astrology, Mercury rules communication, travel, technology and
+          contracts, so its retrograde is blamed for missed emails, delayed
+          trains and crashing phones, and advised as a time to review and revise
+          rather than to launch or sign. There is no known physical effect:
+          Mercury is a small planet about 90 million km away when it is
+          retrograde. Treat it as a reason to double-check, not as a verdict.
+        </p>
+        <p class="note">
+          Positions are computed in your browser from the orbital elements of
+          NASA JPL's
+          <a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html"
+            >Approximate Positions of the Planets</a
+          >, accurate to within hours for the stations between 1800 and 2050.
+          Dates are shown in your time zone, and signs are those of the tropical
+          zodiac.
+        </p>
+      </div>
+
+      <div class="footer">
+        <p>
+          <a href="calendar.html">Retrograde calendar</a>
+        </p>
+        <p>
+          Mercury Retrograde is open source on
+          <a href="https://github.com/evoluteur/mercury-retrograde">GitHub</a>
+          with an MIT license.
+        </p>
+        <p>
+          Had fun browsing the app?
+          <a href="https://github.com/sponsors/evoluteur"
+            >Buy me a coffee by becoming a sponsor</a
+          >.
+        </p>
+        <p>
+          You may also enjoy the
+          <a href="https://evoluteur.github.io/moon-phase-calendar/"
+            >Moon Phase Calendar</a
+          >
+          and the
+          <a href="https://evoluteur.github.io/music-of-the-spheres/"
+            >Music of the Spheres</a
+          >. For more mystic arts as small web apps, see
+          <a href="https://evoluteur.github.io/esoterica.html">Esoterica</a>.
+        </p>
+        <p class="copyright">
+          &#169; 2026
+          <a href="https://evoluteur.github.io/">Olivier Giulieri</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
