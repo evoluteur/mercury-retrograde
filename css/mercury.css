@@ -28,13 +28,24 @@
   opacity: 1;
 }
 
-/* GitHub link, just below the theme toggle */
-#omg-github {
+/* Theme toggle + GitHub link as one row, anchored top right (core.css
+   normally anchors #omg-theme-picker there directly; "static" here lets it
+   sit inline instead, with the gap coming from the flex row). */
+#omg-header-tools {
   position: absolute;
-  top: 34px;
-  right: 4px; /* centred under the last toggle icon */
-  margin-top: 12px;
+  top: 5px;
+  right: 5px;
   z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#omg-header-tools #omg-theme-picker {
+  position: static;
+}
+
+/* GitHub link, same look as the theme toggle's icons */
+#omg-github {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -57,13 +68,13 @@ html[data-theme="evol-blue"] #omg-github svg {
 }
 
 /* title and page links on one line, 40px apart (the theme toggle and
-   GitHub icon are positioned on their own at the top right) */
+   GitHub icon sit on their own row at the top right) */
 #omg-header {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   column-gap: 40px;
-  padding-right: 110px; /* clear of the theme toggle */
+  padding-right: 170px; /* clear of the theme toggle and GitHub icon */
   box-sizing: border-box;
   /* a flex box keeps the h1's top margin inside it, which would move the
      theme toggle and GitHub icon up: put that margin on the header instead */
@@ -432,20 +443,19 @@ h3 {
 /* keep the title clear of the theme toggle and GitHub icon */
 @media only screen and (max-width: 560px) {
   #omg-header {
-    padding-right: 96px;
+    padding-right: 165px;
     margin-top: 15px;
   }
   #omg-header h1 {
-    font-size: min(2em, 5.8vw); /* "Mercury Retrograde" on one line */
+    font-size: min(2em, 5.8vw);
     margin-bottom: 4px;
+    white-space: normal;
+    overflow: visible;
   }
   #mr-nav {
     flex-basis: 100%;
     font-size: 0.95em;
     margin-bottom: 8px;
-  }
-  #question {
-    padding-right: 40px; /* clear of the GitHub icon */
   }
 }
 
